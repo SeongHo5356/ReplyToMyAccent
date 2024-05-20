@@ -1,5 +1,6 @@
 package com.example.smplnotitst
 
+import android.app.Notification
 import android.os.Bundle
 import android.service.notification.StatusBarNotification
 import android.util.Log
@@ -17,6 +18,10 @@ import android.provider.Settings
 import androidx.core.app.NotificationManagerCompat
 
 class MainActivity : AppCompatActivity() {
+    private val PREFS_KEY:String = "bot";
+    private val ON_KEY:String = "on";
+    private var granted = true;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
