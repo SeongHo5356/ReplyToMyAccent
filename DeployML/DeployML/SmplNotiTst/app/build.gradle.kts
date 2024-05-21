@@ -50,4 +50,6 @@ dependencies {
 
     // JavaScript parser
     implementation("com.faendir.rhino:rhino-android:1.6.0")
+    implementation("com.google.android.gms:play-services-wearable:18.1.0")
+
 }

@@ -35,10 +35,6 @@ class MyNotificationListenerService : NotificationListenerService() {
         val extraSubText: String = extras?.get(Notification.EXTRA_SUB_TEXT).toString()
         val extraSummaryText: String = extras?.get(Notification.EXTRA_SUMMARY_TEXT).toString()
 
-        if (packageName == "jp.naver.line.android"){
-            Log.d("TAG1", "packageNameTEST")
-        }
-
         Log.d(
                 "TAG2" , "onNotificationPosted:\n" +
                         "PackageName: $packageName" +
@@ -53,16 +49,18 @@ class MyNotificationListenerService : NotificationListenerService() {
 
 
         if (packageName == "jp.naver.line.android" && notificationKey != null){
-            
-            val wExt = Notification.WearableExtender(sbn?.notification);
+            val wExt = Notification.WearableExtender(sbn?.notification)
+            println("actino리스트, wEXT.actions : " + wExt.actions)
             for (act in wExt.actions){
-                println(act)
                 if(act.remoteInputs != null && act.remoteInputs.isNotEmpty()){
+                    println("현재 실행중인 action" + act)
+                    println("act.remoteInputs?" + act.remoteInputs)
                     if (act.title.toString().contains("reply",true) || act.title.toString().contains("답장", true)){
                         execContext = applicationContext
-                        callResponder(extras?.getString("android.title"),
+                        callResponder("2X",
                             extras?.get("android.text"),act,"답장이요~")
-                        println("실행됨")
+
+                        println("한 사이클 끝")
                     }
                 }
             }
@@ -72,6 +70,7 @@ class MyNotificationListenerService : NotificationListenerService() {
     private fun handleLineNotification(packageName: String?, extras:Bundle?, sbn: StatusBarNotification, myreply: String){
         if (packageName == packageName){
             val wExt = Notification.WearableExtender(sbn?.notification);
+            println("action : " + wExt.actions)
             for (act in wExt.actions){
                 println(act)
                 if(act.remoteInputs != null && act.remoteInputs.isNotEmpty()){
@@ -86,7 +85,7 @@ class MyNotificationListenerService : NotificationListenerService() {
         }
     }
 
-    private fun callResponder(room: String?, msg: Any?, session: Notification.Action?,myreply:String){
+    fun callResponder(room: String?, msg: Any?, session: Notification.Action?,myreply:String){
         val parseContext = RhinoAndroidHelper.prepareContext()
         parseContext.optimizationLevel = -1
         val sender: String
