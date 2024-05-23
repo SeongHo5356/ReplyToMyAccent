@@ -1,30 +1,30 @@
 package com.example.smplnotitst
 
-import android.app.Notification
-import android.os.Bundle
-import android.service.notification.StatusBarNotification
-import android.util.Log
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import android.app.NotificationManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.provider.Settings
+import android.widget.Button
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.NotificationManagerCompat
 
 class MainActivity : AppCompatActivity() {
-    private val PREFS_KEY:String = "bot";
-    private val ON_KEY:String = "on";
-    private var granted = true;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        val requestPermissionButton: Button = findViewById(R.id.request_permission_button)
+        requestPermissionButton.setOnClickListener {
+            val intent = Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)
+            startActivity(intent)
+        }
 
         if(!isNotificationPermissionGranted()){
             startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS))

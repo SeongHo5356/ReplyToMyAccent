@@ -15,7 +15,6 @@ class WearMessageListenerService : WearableListenerService() {
 
             val notificationListenerService = MyNotificationListenerService()
             val notifications : Array<StatusBarNotification> = notificationListenerService.activeNotifications
-
             for (sbn in notifications){
 
                 val wExt = Notification.WearableExtender(sbn.notification)
