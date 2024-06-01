@@ -45,7 +45,7 @@ class MyNotiListen2 : NotificationListenerService() {
                 }
                 println("wEXT, action : " + wExt + " / " + action)
                 if (action != null){
-                    println("2차통과")
+
                     execContext = applicationContext
                     callResponder(notification?.notification?.extras?.getString("android.title"),
                         notification?.notification?.extras?.getString("android.text"),

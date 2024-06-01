@@ -30,6 +30,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".presentation.ButtonActivity">
+            <!-- 필요한 Intent filter, metadata 등 -->
+        </activity>
+
         <service
             android:name=".presentation.AndroidListener"
             android:exported="true"

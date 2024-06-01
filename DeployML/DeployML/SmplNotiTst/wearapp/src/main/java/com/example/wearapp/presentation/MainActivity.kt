@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
     }
 
      private fun sendNotification(title: String, text: String) {
-         val intent = Intent(this, MainActivity::class.java).apply {
+         val intent = Intent(this, ButtonActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         }
         val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE)
@@ -94,5 +94,4 @@ class MainActivity : ComponentActivity() {
         }
      }
 }
-
 
